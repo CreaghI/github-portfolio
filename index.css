@@ -505,6 +505,41 @@ body:not(.user-is-tabbing) a:focus {
     }
 }
 
+/* 1. Base Setup (Same as before) */
+.work__image-box {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.work__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* 2. Hide everything except the first image */
+.work__image:not(:first-child) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+/* 3. The Animation: Fade in and STAY visible */
+@keyframes revealImage {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* 4. On Hover: Trigger the animation for ALL hidden images */
+.work__image-box:hover .work__image:not(:first-child) {
+  /* forwards = keep the image visible after animation ends */
+  animation: revealImage 1.5s ease-in-out forwards; 
+}
+
+
 /* --------------------------------------- */
 /* ----- Clients ----- */
 /* --------------------------------------- */
